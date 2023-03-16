@@ -8,7 +8,10 @@ class ProductVerticalItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int discountRatio = (data.normalPrice / data.discountPrice).floor();
+    int discountRatio = 0;
+    if (data.discountPrice > 0 && data.normalPrice > data.discountPrice) {
+      discountRatio = (data.normalPrice / data.discountPrice).floor();
+    }
     double height = 150;
     return GestureDetector(
       onTap: () {
