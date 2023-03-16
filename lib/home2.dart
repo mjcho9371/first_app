@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 
 import 'package:mjcho_first_app/item.dart';
 import 'package:mjcho_first_app/data.dart';
+import 'package:mjcho_first_app/vertical_item.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Home2 extends StatefulWidget {
+  const Home2({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home2> createState() => _Home2State();
 }
 
-class _HomeState extends State<Home> {
+class _Home2State extends State<Home2> {
   String keyword = '';
   List<ProductData> allItems = [];
   List<ProductData> items = [];
   @override
   void initState() {
     ProductDatas datas = ProductDatas();
-    ProductData data0 = datas.datas[0];
-    ProductData data1 = datas.datas[1];
-    ProductData data2 = datas.datas[2];
-    ProductData data3 = datas.datas[3];
-    allItems = [...datas.datas, ...datas.datas, ...datas.datas, ...datas.datas];
+
+    allItems = [...datas.datas];
     items = allItems;
     super.initState();
   }
@@ -45,22 +43,21 @@ class _HomeState extends State<Home> {
           elevation: 0.3,
           actions: [
             IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: onPressed,
             ),
           ],
           title: TextField(
             onChanged: (v) {
               keyword = v;
-              print('onChanged: ' + keyword);
             },
           ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 20,
                 top: 40,
                 bottom: 16,
@@ -75,21 +72,10 @@ class _HomeState extends State<Home> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: (items.length / 2).floor(),
+                  itemCount: items.length,
                   itemBuilder: (context, index) {
-                    final data0 = items[index + index];
-                    final data1 = items[index + index + 1];
-                    return Row(children: [
-                      Flexible(
-                        flex: 2,
-                        child: ProductItem(data0),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        //2:2로
-                        child: ProductItem(data1),
-                      ),
-                    ]);
+                    final data = items[index];
+                    return ProductVerticalItem(data);
                   }),
             ),
           ],
