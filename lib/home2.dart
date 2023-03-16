@@ -27,14 +27,14 @@ class _Home2State extends State<Home2> {
   void onPressed() {
     print('current keyword: ' + keyword);
     setState(() {
-      items =
-          allItems.where((element) => element.title.contains(keyword)).toList();
+      items = allItems.where((element) => element.isMe(keyword)).toList();
       print('current items.length: ${items.length}');
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('itmes count ${items.length}');
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -54,7 +54,7 @@ class _Home2State extends State<Home2> {
           ),
         ),
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Padding(
               padding: EdgeInsets.only(
@@ -64,6 +64,7 @@ class _Home2State extends State<Home2> {
               ),
               child: Text(
                 '지금 인기 있는 상품들',
+                maxLines: 1,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -72,8 +73,10 @@ class _Home2State extends State<Home2> {
             ),
             Expanded(
               child: ListView.builder(
+                  shrinkWrap: true,
                   itemCount: items.length,
                   itemBuilder: (context, index) {
+                    print('item index ${index}');
                     final data = items[index];
                     return ProductVerticalItem(data);
                   }),

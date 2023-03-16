@@ -42,46 +42,48 @@ class ProductVerticalItem extends StatelessWidget {
                 SizedBox(
                   width: 16,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      data.title,
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        data.title,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      data.description,
-                      maxLines: 1,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          data.brandName,
-                          maxLines: 1,
-                        ),
-                        Text(
-                          data.sellerName,
-                          maxLines: 1,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('$discountRatio%'),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text('${data.discountPrice}'),
-                      ],
-                    ),
-                  ],
+                      Text(
+                        data.description,
+                        maxLines: 1,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            data.brandName,
+                            maxLines: 1,
+                          ),
+                          Text(
+                            data.sellerName,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text('$discountRatio%'),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text('${data.discountPrice}'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
