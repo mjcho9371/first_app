@@ -48,6 +48,7 @@ class ProductDatas {
     }
 
     datas = items.map((e) {
+      print(e);
       return ProductData(
           title: e['title'] ?? '',
           description: e['description'] ?? '',

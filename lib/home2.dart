@@ -59,8 +59,13 @@ class _Home2State extends State<Home2> {
             ),
           ],
           title: TextField(
+            textInputAction: TextInputAction.go,
             onChanged: (v) {
-              filter = v;
+              keyword = v;
+            },
+            onSubmitted: (value) {
+              keyword = value;
+              searchProduct(keyword);
             },
           ),
         ),
