@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mjcho_first_app/item.dart';
+import 'package:mjcho_first_app/api.dart';
 import 'package:mjcho_first_app/data.dart';
 import 'package:mjcho_first_app/vertical_item.dart';
 
@@ -13,21 +14,29 @@ class Home2 extends StatefulWidget {
 
 class _Home2State extends State<Home2> {
   String keyword = '';
+  String filter = '';
   List<ProductData> allItems = [];
   List<ProductData> items = [];
+
+  void searchProduct([String keyword = '']) {
+    getPublication(keyword).then((datas) {
+      setState(() {
+        allItems = [...datas.datas];
+        items = allItems;
+      });
+    });
+  }
+
   @override
   void initState() {
-    ProductDatas datas = ProductDatas();
-
-    allItems = [...datas.datas];
-    items = allItems;
+    searchProduct();
     super.initState();
   }
 
-  void onPressed() {
-    print('current keyword: ' + keyword);
+  void onFilter() {
+    print('current filter: ' + filter);
     setState(() {
-      items = allItems.where((element) => element.isMe(keyword)).toList();
+      items = allItems.where((element) => element.isMe(filter)).toList();
       print('current items.length: ${items.length}');
     });
   }
@@ -44,18 +53,29 @@ class _Home2State extends State<Home2> {
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
-              onPressed: onPressed,
+              onPressed: () {
+                searchProduct(keyword);
+              },
             ),
           ],
           title: TextField(
             onChanged: (v) {
-              keyword = v;
+              filter = v;
             },
           ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: TextField(
+                onChanged: (v) {
+                  filter = v;
+                  onFilter();
+                },
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.only(
                 left: 20,

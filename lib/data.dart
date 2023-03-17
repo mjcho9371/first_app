@@ -36,10 +36,17 @@ class ProductData {
 }
 
 class ProductDatas {
+  final Map? initData;
   late final List<ProductData> datas;
 
-  ProductDatas() {
-    List<Map> items = dummyDatas['items']!;
+  ProductDatas([this.initData]) {
+    List<Map> items = [];
+    if ((initData == null || initData!['items'] != null)) {
+      items = (initData!['items']! as List<dynamic>)
+          .map((e) => (e as Map))
+          .toList();
+    }
+
     datas = items.map((e) {
       return ProductData(
           title: e['title'] ?? '',
