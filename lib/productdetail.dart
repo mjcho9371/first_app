@@ -45,7 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 widget.data.title,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 3,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -69,19 +69,18 @@ class _ProductDetailState extends State<ProductDetail> {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                print('purchase');
-              },
-              child: Text('purchase'),
-              style: ButtonStyle(
-                backgroundColor: Colors.brown,
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: ElevatedButton(
+                onPressed: () {
+                  print('purchase');
+                },
+                child: Text('enter purchase'),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(Colors.red)),
+                //style: ButtonStyle(backgroundColor: Colors.brown),
               ),
             ),
-            GestureDetector(
-              onTap: () {},
-              child: Text('주문하기'),
-            )
           ],
         ),
       ),
