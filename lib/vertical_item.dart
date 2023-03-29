@@ -27,7 +27,7 @@ class ProductVerticalItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          color: Color.fromARGB(255, 238, 238, 238),
+          color: Colors.white,
           child: SizedBox(
             width: double.infinity,
             height: height,
@@ -45,16 +45,19 @@ class ProductVerticalItem extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         data.title,
                         style: const TextStyle(
                           color: Color.fromARGB(255, 0, 0, 0),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15,
                         ),
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
@@ -75,11 +78,24 @@ class ProductVerticalItem extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text('$discountRatio%'),
+                          Text(
+                            '$discountRatio%',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                           SizedBox(
                             width: 4,
                           ),
-                          Text('${data.discountPrice}'),
+                          Text(
+                            '${data.discountPrice}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ],
                       ),
                     ],
