@@ -56,6 +56,7 @@ class ProductVerticalItem extends StatelessWidget {
                           color: Color.fromARGB(255, 0, 0, 0),
                           fontWeight: FontWeight.w500,
                           fontSize: 15,
+                          fontFamily: String.fromEnvironment("Pretendard"),
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -75,6 +76,9 @@ class ProductVerticalItem extends StatelessWidget {
                             maxLines: 1,
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: 8,
                       ),
                       Row(
                         children: [
